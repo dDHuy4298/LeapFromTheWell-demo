@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>Leap From The Well</title>
+<!-- YouTube Playables SDK: must load before any game code (REQUIREMENTS INT-1). -->
+<script src="https://www.youtube.com/game_api/v1"></script>
+  <script type="module" crossorigin src="./assets/index-oXKoGHtY.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-CXdZXPI7.css">
+</head>
+<body>
+<div id="app">
+  <div id="stage">
+    <canvas id="cv" width="180" height="320"></canvas>
+
+    <div class="hud" id="hud" hidden>
+      <span class="chip"><b id="h-height">0</b> m</span>
+      <span class="chip" id="h-time">0:00</span>
+      <span class="chip fly" id="h-flies" aria-label="Fireflies"><i></i><b id="h-fly-n">0</b></span>
+      <span class="chip next" id="h-next" hidden></span>
+      <button class="icon-btn" id="b-pause" aria-label="Pause">II</button>
+    </div>
+
+    <div class="progress" id="progress" hidden aria-hidden="true">
+      <svg class="sun" viewBox="-12 -12 24 24"><g id="p-rays"></g><circle r="5.5" fill="#ffd85a"/><circle cx="-1.6" cy="-1.6" r="2.2" fill="#ffe9a0"/></svg>
+      <div class="p-area" id="p-area">
+        <svg class="line" viewBox="0 0 20 300" preserveAspectRatio="none">
+          <path id="p-shadow" transform="translate(0.8 1.5)"/><path id="p-paper"/><g id="p-zones"></g><path id="p-todo" pathLength="100"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="shout" id="shout" aria-live="polite"></div>
+
+    <div class="banner" id="banner" aria-live="polite"><small id="banner-sub"></small><strong id="banner-name"></strong></div>
+
+    <p class="tip" id="tip" hidden></p>
+
+    <div class="hints" id="hints" hidden aria-hidden="true">
+      <span class="hint" id="hint-l"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></span><span class="hint" id="hint-u"><svg viewBox="0 0 24 24"><path d="M5 15l7-7 7 7"/></svg></span><span class="hint" id="hint-r"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span>
+    </div>
+
+    <section class="overlay" id="splash" hidden>
+      <h1 class="logo" id="logo"></h1>
+      <div class="splash-foot">
+        <p class="tagline" id="tagline" data-i18n="tagline"></p>
+        <p class="start" id="start-text"></p>
+        <div class="actions" id="splash-actions" hidden>
+          <button class="btn" id="b-continue" data-i18n="continue"></button>
+          <button class="btn ghost" id="b-new" data-i18n="newLeap"></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="overlay" id="paused" hidden>
+      <div class="card">
+        <h2 data-i18n="paused"></h2>
+        <label class="slider"><span data-i18n="music"></span><input type="range" id="music" min="0" max="100" step="5"></label>
+        <label class="slider"><span data-i18n="sfx"></span><input type="range" id="sfx" min="0" max="100" step="5"></label>
+        <div class="slider hat-head"><span data-i18n="hats"></span><small class="flies" id="flies-count"></small></div>
+        <div class="hats" id="hats"></div>
+      </div>
+      <div class="actions">
+        <button class="btn" id="b-resume" data-i18n="resume"></button>
+        <button class="btn ghost" id="b-restart" data-i18n="newLeap"></button>
+      </div>
+    </section>
+
+    <section class="overlay" id="win" hidden>
+      <div class="card">
+        <h2 data-i18n="win.title"></h2>
+        <div class="stats">
+          <div><span data-i18n="win.time"></span><b id="w-time">0:00</b></div>
+          <div><span data-i18n="win.jumps"></span><b id="w-jumps">0</b></div>
+          <div><span data-i18n="win.falls"></span><b id="w-falls">0</b></div>
+        </div>
+        <p id="w-best"></p>
+        <p class="end" data-i18n="win.end"></p>
+      </div>
+      <button class="btn" id="b-again" data-i18n="again"></button>
+    </section>
+  </div>
+</div>
+</body>
+</html>
