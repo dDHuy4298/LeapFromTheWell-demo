@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>Leap From The Well</title>
+<!-- YouTube Playables SDK: must load before any game code (REQUIREMENTS INT-1). -->
+<script src="https://www.youtube.com/game_api/v1"></script>
+  <script type="module" crossorigin src="./assets/index-Ct2MdJLJ.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-1mGiK5dD.css">
+</head>
+<body>
+<canvas id="outside" aria-hidden="true"></canvas>
+<div id="app">
+  <div id="stage">
+    <canvas id="cv" width="180" height="320"></canvas>
+    <div class="zones" id="zones" hidden aria-hidden="true"><span id="zone-l" data-icon="left"></span><span id="zone-u" data-icon="up"></span><span id="zone-r" data-icon="right"></span></div>
+
+    <div class="hud" id="hud" hidden>
+      <span class="chip"><b id="h-height">0</b> m</span>
+      <span class="chip" id="h-time">0:00</span>
+      <span class="chip fly" id="h-flies" aria-label="Fireflies"><i></i><b id="h-fly-n">0</b></span>
+      <span class="chip next" id="h-next" hidden></span>
+      <button class="icon-btn" id="b-pause" aria-label="Pause">II</button>
+    </div>
+
+    <div class="progress" id="progress" hidden aria-hidden="true">
+      <svg class="sun" viewBox="-12 -12 24 24"><g id="p-rays"></g><circle r="5.5" fill="#ffd85a"/><circle cx="-1.6" cy="-1.6" r="2.2" fill="#ffe9a0"/></svg>
+      <div class="p-area" id="p-area">
+        <svg class="line" viewBox="0 0 20 300" preserveAspectRatio="none">
+          <path id="p-shadow" transform="translate(0.8 1.5)"/><path id="p-paper"/><g id="p-zones"></g><path id="p-todo"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="shout" id="shout" aria-live="polite"></div>
+
+    <button class="btn rescue store" id="b-store" data-label="shop" hidden><span data-icon="bag"></span><small id="store-have"></small></button>
+    <button class="btn rescue" id="b-rescue" hidden><span data-i18n="rescue"></span><small data-i18n="ad"></small></button>
+
+    <div class="banner" id="banner" aria-live="polite"><small id="banner-sub"></small><strong id="banner-name"></strong></div>
+
+    <p class="tip" id="tip" hidden></p>
+
+    <div class="hints" id="hints" hidden aria-hidden="true">
+      <span class="hint" id="hint-l"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></span><span class="hint" id="hint-u"><svg viewBox="0 0 24 24"><path d="M5 15l7-7 7 7"/></svg></span><span class="hint" id="hint-r"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></span>
+    </div>
+
+    <section class="overlay" id="splash" hidden>
+      <h1 class="logo" id="logo"></h1>
+      <div class="splash-foot">
+        <p class="tagline" id="tagline" data-i18n="tagline"></p>
+        <div class="actions row">
+          <button class="btn ghost icon" id="b-new" data-label="newLeap" data-icon="again"></button>
+          <button class="btn icon" id="b-continue" data-label="continue" data-icon="play"></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="overlay" id="paused" hidden>
+      <div class="card">
+        <label class="slider"><span data-icon="music"></span><input type="range" id="music" min="0" max="100" step="5" data-label="music"></label>
+        <label class="slider"><span data-icon="sound"></span><input type="range" id="sfx" min="0" max="100" step="5" data-label="sfx"></label>
+        <div class="hats" id="hats" role="group" data-label="hats"></div>
+      </div>
+      <div class="actions row">
+        <button class="btn ghost icon" id="b-restart" data-label="newLeap" data-icon="again"></button>
+        <button class="btn icon" id="b-resume" data-label="resume" data-icon="play"></button>
+      </div>
+    </section>
+
+    <section class="overlay" id="shop" hidden>
+      <div class="card">
+        <div class="hat-head"><span data-icon="bag"></span><span class="chip fly" id="shop-have"><i></i><b></b></span></div>
+        <div class="items" id="items"></div>
+        <p class="shop-note" id="shop-crane" data-i18n="shop.crane" hidden></p>
+      </div>
+      <button class="btn icon" id="b-shop-back" data-label="shop.back" data-icon="play"></button>
+    </section>
+
+    <section class="overlay" id="win" hidden>
+      <div class="card">
+        <h2 data-i18n="win.title"></h2>
+        <div class="stats">
+          <div data-label="win.time" role="group"><span data-icon="clock"></span><b id="w-time">0:00</b></div>
+          <div data-label="win.jumps" role="group"><span data-icon="up"></span><b id="w-jumps">0</b></div>
+          <div data-label="win.falls" role="group"><span data-icon="down"></span><b id="w-falls">0</b></div>
+          <div data-label="win.best" role="group"><span data-icon="star"></span><b id="w-best">0:00</b></div>
+        </div>
+        <p class="end" data-i18n="win.end"></p>
+      </div>
+      <button class="btn icon" id="b-again" data-label="again" data-icon="again"></button>
+    </section>
+  </div>
+</div>
+</body>
+</html>
